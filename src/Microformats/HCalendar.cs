@@ -26,24 +26,13 @@ namespace Microformats
             var veventTag = new TagBuilder("div");
             veventTag.AddCssClass(Css.Container);
 
-            AddTagIfValueProvided(veventTag, Css.Summary, Summary);
-            AddTagIfValueProvided(veventTag, Css.DateStart, FormatDateTimeValue(DateStart));
-            AddTagIfValueProvided(veventTag, Css.DateEnd, FormatDateTimeValue(DateEnd));
-            AddTagIfValueProvided(veventTag, Css.Location, Location);
-            AddTagIfValueProvided(veventTag, Css.Organizer, Organizer);
+            Util.AddTagIfValueProvided(veventTag, Css.Summary, Summary);
+            Util.AddTagIfValueProvided(veventTag, Css.DateStart, FormatDateTimeValue(DateStart));
+            Util.AddTagIfValueProvided(veventTag, Css.DateEnd, FormatDateTimeValue(DateEnd));
+            Util.AddTagIfValueProvided(veventTag, Css.Location, Location);
+            Util.AddTagIfValueProvided(veventTag, Css.Organizer, Organizer);
 
             return veventTag.ToString();
-        }
-
-        private static void AddTagIfValueProvided(TagBuilder veventTag, string cssClass, string value)
-        {
-            if (!string.IsNullOrWhiteSpace(value))
-            {
-                var tag = new TagBuilder("div");
-                tag.AddCssClass(cssClass);
-                tag.InnerHtml = value;
-                veventTag.InnerHtml += tag.ToString();
-            }
         }
 
         public static string FormatDateTimeValue(DateTime? dateStart)
