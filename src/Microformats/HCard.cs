@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
 namespace Microformats
 {
     public class HCard : IHtmlString
     {
+        public string Organization { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+
         #region IHtmlString Members
 
         public string ToHtmlString()
@@ -34,16 +34,12 @@ namespace Microformats
         public static HCard Generate(string fullName = null, string organization = null, string email = null)
         {
             return new HCard
-            {
-                FullName = fullName,
-                Organization = organization,
-                Email = email
-            };
+                       {
+                           FullName = fullName,
+                           Organization = organization,
+                           Email = email
+                       };
         }
-
-        public string Organization { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
 
         #region Nested type: Css
 
