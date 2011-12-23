@@ -23,17 +23,24 @@ namespace Microformats
             var hCardTag = new TagBuilder("div");
             hCardTag.AddCssClass(Css.Container);
 
+            Util.AddTagIfValueProvided(hCardTag, Css.FullName, FullName);
+            Util.AddTagIfValueProvided(hCardTag, Css.Organization, Organization);
+
             return hCardTag.ToString();
         }
 
 
-        public static HCard Generate()
+        public static HCard Generate(string fullName = null, string organization = null)
         {
             return new HCard
             {
-
+                FullName = fullName,
+                Organization = organization
             };
         }
+
+        public string Organization { get; set; }
+        public string FullName { get; set; }
 
         #region Nested type: Css
 
@@ -42,6 +49,16 @@ namespace Microformats
             public static string Container
             {
                 get { return "vcard"; }
+            }
+
+            public static string FullName
+            {
+                get { return "fn"; }
+            }
+
+            public static string Organization
+            {
+                get { return "org"; }
             }
         }
 

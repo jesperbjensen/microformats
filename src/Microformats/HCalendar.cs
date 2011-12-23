@@ -10,7 +10,8 @@ namespace Microformats
         public DateTime? DateStart { get; set; }
         public DateTime? DateEnd { get; set; }
         public string Location { get; set; }
-        public string Organizer { get; set; }
+        public object Organizer { get; set; }
+        public string Url { get; set; }
 
         #region IHtmlString Members
 
@@ -31,12 +32,14 @@ namespace Microformats
             Util.AddTagIfValueProvided(veventTag, Css.DateEnd, Util.FormatDateTimeValue(DateEnd));
             Util.AddTagIfValueProvided(veventTag, Css.Location, Location);
             Util.AddTagIfValueProvided(veventTag, Css.Organizer, Organizer);
+            Util.AddTagIfValueProvided(veventTag, Css.Url, Url);
 
             return veventTag.ToString();
         }
 
         public static HCalendar Generate(string summary = null, DateTime? dtStart = null,
-                                         DateTime? dtEnd = null, string location = null, string organizer = null)
+                                         DateTime? dtEnd = null, string location = null, object organizer = null,
+                                         string url = null)
         {
             return new HCalendar
                        {
@@ -44,7 +47,8 @@ namespace Microformats
                            DateStart = dtStart,
                            DateEnd = dtEnd,
                            Location = location,
-                           Organizer = organizer
+                           Organizer = organizer,
+                           Url = url
                        };
         }
 
@@ -80,6 +84,11 @@ namespace Microformats
             public static string Organizer
             {
                 get { return "organizer"; }
+            }
+
+            public static string Url
+            {
+                get { return "url"; }
             }
         }
 

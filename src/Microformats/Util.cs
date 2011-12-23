@@ -2,20 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Microformats
 {
     internal class Util
     {
-        public static void AddTagIfValueProvided(TagBuilder veventTag, string cssClass, string value)
+        public static void AddTagIfValueProvided(TagBuilder parentTag, string cssClass, object value)
         {
-            if (!string.IsNullOrWhiteSpace(value))
+            string strValue = null;
+
+            if (value != null && !(value is IHtmlString))
+                strValue = HttpUtility.HtmlEncode(value.ToString());
+
+            if (value != null && value is IHtmlString)
+                strValue = ((IHtmlString) value).ToHtmlString();
+
+            if (!string.IsNullOrWhiteSpace(strValue))
             {
                 var tag = new TagBuilder("div");
                 tag.AddCssClass(cssClass);
-                tag.InnerHtml = value;
-                veventTag.InnerHtml += tag.ToString();
+                tag.InnerHtml = strValue;
+                parentTag.InnerHtml += tag.ToString();
             }
         }
 
