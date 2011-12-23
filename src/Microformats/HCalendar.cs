@@ -27,22 +27,12 @@ namespace Microformats
             veventTag.AddCssClass(Css.Container);
 
             Util.AddTagIfValueProvided(veventTag, Css.Summary, Summary);
-            Util.AddTagIfValueProvided(veventTag, Css.DateStart, FormatDateTimeValue(DateStart));
-            Util.AddTagIfValueProvided(veventTag, Css.DateEnd, FormatDateTimeValue(DateEnd));
+            Util.AddTagIfValueProvided(veventTag, Css.DateStart, Util.FormatDateTimeValue(DateStart));
+            Util.AddTagIfValueProvided(veventTag, Css.DateEnd, Util.FormatDateTimeValue(DateEnd));
             Util.AddTagIfValueProvided(veventTag, Css.Location, Location);
             Util.AddTagIfValueProvided(veventTag, Css.Organizer, Organizer);
 
             return veventTag.ToString();
-        }
-
-        public static string FormatDateTimeValue(DateTime? dateStart)
-        {
-            if (dateStart.HasValue)
-            {
-                return dateStart.Value.ToUniversalTime().ToString("yyyyMMddTHHmmssZ");
-            }
-
-            return null;
         }
 
         public static HCalendar Generate(string summary = null, DateTime? dtStart = null,

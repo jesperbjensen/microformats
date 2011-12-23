@@ -18,5 +18,15 @@ namespace Microformats
                 veventTag.InnerHtml += tag.ToString();
             }
         }
+
+        public static string FormatDateTimeValue(DateTime? dateStart)
+        {
+            if (dateStart.HasValue)
+            {
+                return dateStart.Value.ToUniversalTime().ToString("yyyyMMddTHHmmssZ");
+            }
+
+            return null;
+        }
     }
 }
