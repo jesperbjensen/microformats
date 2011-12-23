@@ -37,14 +37,14 @@ namespace Microformats
             return veventTag.ToString();
         }
 
-        public static HCalendar Generate(string summary = null, DateTime? dtStart = null,
+        public static HCalendar Generate(string summary = null, DateTime? dateStart = null,
                                          DateTime? dtEnd = null, string location = null, object organizer = null,
                                          string url = null)
         {
             return new HCalendar
                        {
                            Summary = summary,
-                           DateStart = dtStart,
+                           DateStart = dateStart,
                            DateEnd = dtEnd,
                            Location = location,
                            Organizer = organizer,

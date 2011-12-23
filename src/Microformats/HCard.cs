@@ -25,22 +25,25 @@ namespace Microformats
 
             Util.AddTagIfValueProvided(hCardTag, Css.FullName, FullName);
             Util.AddTagIfValueProvided(hCardTag, Css.Organization, Organization);
+            Util.AddTagIfValueProvided(hCardTag, Css.Email, Email);
 
             return hCardTag.ToString();
         }
 
 
-        public static HCard Generate(string fullName = null, string organization = null)
+        public static HCard Generate(string fullName = null, string organization = null, string email = null)
         {
             return new HCard
             {
                 FullName = fullName,
-                Organization = organization
+                Organization = organization,
+                Email = email
             };
         }
 
         public string Organization { get; set; }
         public string FullName { get; set; }
+        public string Email { get; set; }
 
         #region Nested type: Css
 
@@ -59,6 +62,11 @@ namespace Microformats
             public static string Organization
             {
                 get { return "org"; }
+            }
+
+            public static string Email
+            {
+                get { return "email"; }
             }
         }
 
